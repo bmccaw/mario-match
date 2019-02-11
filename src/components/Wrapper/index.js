@@ -3,7 +3,7 @@ import Styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Card from '../Card';
 
-export default function Wrapper ({ cards, flipped, handleClick}) {
+export default function Wrapper ({ disabled, cards, flipped, solved, handleClick}) {
         return <WrapperDiv className="Wrapper">
                 {cards.map( card => (
                         <Card 
@@ -11,15 +11,19 @@ export default function Wrapper ({ cards, flipped, handleClick}) {
                         id={card.id}
                         type={card.type}
                         flipped={flipped.includes(card.id)}
-                        handleClick = {() => handleClick(card.id)}
+                        solved={solved.includes(card.id)}
+                        handleClick = {handleClick}
+                        disabled={disabled || solved.includes(card.id)}
                       />
                 ))}
         </WrapperDiv>
 };
 
 Wrapper.propTypes = {
+        disabled: PropTypes.bool.isRequired,
         cards: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
         flipped: PropTypes.arrayOf(PropTypes.number).isRequired,
+        solved: PropTypes.arrayOf(PropTypes.number).isRequired,
         handleClick: PropTypes.func.isRequired
 }
 
