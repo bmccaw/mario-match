@@ -1,25 +1,51 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Wrapper from './components/Wrapper';
+import Footer from './components/Footer';
+import Card from './components/Card';
+import cards from './cards.json';
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle `
+  body {
+    background-color: ${props => (props.blackColor ? 'black' : 'white')};
+  }`
+
 
 class App extends Component {
+
+state = {
+  cards,
+  coins: 21,
+  lives: 10,
+  score: 88010,
+  src: cards.back
+}
+
+flipCard = (id) => {
+  console.log(id);
+  this.setState({
+    src:cards.front
+  });
+}
+
+
   render() {
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <GlobalStyle blackColor />
+        <Wrapper>
+        {this.state.cards.map(card => (
+          <Card 
+            flipCard={this.flipCard}
+            back={card.back}
+            id={card.id}
+            key={card.id}
+            front={card.front}
+          />))}
+        </Wrapper>
+        <Footer />
       </div>
     );
   }
