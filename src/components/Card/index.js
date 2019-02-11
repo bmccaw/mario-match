@@ -1,15 +1,43 @@
 import React from 'react';
 import Styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-const Card = props => (
-    <CardDiv onClick={() => props.flipCard(props.id)}>
-        <img alt= {props.name} src={props.back} data-id={props.id}/>
-    </CardDiv>
-);
+export default function Card({
+    handleClick,
+    id,
+    type,
+    flipped,
+    height,
+    width,
+}) {
+    return (
+        <CardDiv
+            className={`flip-container ${flipped ? 'flipped' : ''}`}
+            style={{
+                width,
+                height,
+            }}
+            onClick={handleClick}
+        >
+            <div className='flipper'>
+                <img
+                    alt='card'
+                    className={flipped ? 'front' : 'back'}
+                    src={flipped ? `/images/${type}.png` : `/images/n-cardback.png`}/>
+            </div>
+        </CardDiv>
+    )
+}
 
-export default Card;
+Card.propTypes = {
+    id: PropTypes.number.isRequired,
+    flipped: PropTypes.bool.isRequired,
+    type: PropTypes.string.isRequired,
+    handleClick: PropTypes.func.isRequired,
+}
 
-const CardDiv = Styled.div `
+
+const CardDiv = Styled.div`
         width:100px;
         height:auto
         margin:auto;

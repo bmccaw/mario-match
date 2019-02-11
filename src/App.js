@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Wrapper from './components/Wrapper';
 import Footer from './components/Footer';
 import Card from './components/Card';
-import cards from './cards.json';
+import initializeDeck from './deck';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle `
@@ -11,44 +11,27 @@ const GlobalStyle = createGlobalStyle `
     background-color: ${props => (props.blackColor ? 'black' : 'white')};
   }`
 
+export default function App () {
 
-class App extends Component {
+  const [cards, setCards] = useState([])
 
-state = {
-  cards,
-  coins: 21,
-  lives: 10,
-  score: 88010,
-  src: cards.back
-}
+  const [flipped, setFlipped] = useState([])
 
-flipCard = (id) => {
-  console.log(id);
-  this.setState({
-    src:cards.front
-  });
-}
+  useEffect(() =>  {
+    setCards(initializeDeck ())
+  }, [])
 
-
-  render() {
+  const handleClick = (id) => setFlipped([...flipped, id])
 
     return (
       <div className="App">
         <GlobalStyle blackColor />
-        <Wrapper>
-        {this.state.cards.map(card => (
-          <Card 
-            flipCard={this.flipCard}
-            back={card.back}
-            id={card.id}
-            key={card.id}
-            front={card.front}
-          />))}
+        <Wrapper
+          cards={cards}
+          flipped={flipped}
+          handleClick={handleClick}>
         </Wrapper>
         <Footer />
       </div>
     );
-  }
-}
-
-export default App;
+};

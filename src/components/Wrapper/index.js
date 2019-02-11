@@ -1,10 +1,27 @@
 import React from 'react';
 import Styled from 'styled-components';
-import bgimg from '../../images/red-white-stripes.svg';
+import PropTypes from 'prop-types';
+import Card from '../Card';
 
-const Wrapper = props => <WrapperDiv>{props.children}</WrapperDiv>
+export default function Wrapper ({ cards, flipped, handleClick}) {
+        return <WrapperDiv className="Wrapper">
+                {cards.map( card => (
+                        <Card 
+                        key={card.id}
+                        id={card.id}
+                        type={card.type}
+                        flipped={flipped.includes(card.id)}
+                        handleClick = {() => handleClick(card.id)}
+                      />
+                ))}
+        </WrapperDiv>
+};
 
-export default Wrapper;
+Wrapper.propTypes = {
+        cards: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+        flipped: PropTypes.arrayOf(PropTypes.number).isRequired,
+        handleClick: PropTypes.func.isRequired
+}
 
 const WrapperDiv = Styled.div `
         display: grid;
@@ -16,7 +33,7 @@ const WrapperDiv = Styled.div `
         background-color:black;
         border: 50px solid;
         border-bottom: none;
-        border-image: url(${bgimg}) 30 stretch;
+        border-image: url('/images/red-white-stripes.svg') 30 stretch;
         border-image-width: 50px 50px 0px 50px;
         border-image-slice:100;
         
