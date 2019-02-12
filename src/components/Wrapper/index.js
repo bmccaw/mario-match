@@ -40,5 +40,6 @@ const WrapperDiv = Styled.div `
         border-image: url('/images/red-white-stripes.svg') 30 stretch;
         border-image-width: 50px 50px 0px 50px;
         border-image-slice:100;
+
         
         `
