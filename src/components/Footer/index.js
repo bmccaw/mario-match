@@ -12,7 +12,7 @@ export default Footer;
 
 const FooterDiv = Styled.div `
         display: grid;
-        grid-template-columns: 65vw 1fr 8vw 8vw 8vw
+        grid-template-columns: 60vw 1fr 8vw 8vw 8vw
         grid-template-areas: "hud . box1 box2 box3";
         grid-gap:20px;
         width: 95vw;

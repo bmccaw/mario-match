@@ -26,6 +26,7 @@ export default function App () {
 
   const handleClick = (id) => { 
     setDisabled(true)
+    flipAudio.play()
     if (flipped.length === 0) {
       setFlipped([id])
       setDisabled(false)
@@ -34,9 +35,11 @@ export default function App () {
       setFlipped([flipped[0],id])
       if (isMatch(id)) {
         setSolved([...solved, flipped[0], id])
+        setTimeout(() => { matchAudio.play(); }, 400)
         resetCards()
       } else {
-        setTimeout(resetCards, 2000)
+        setTimeout(() => { noMatchAudio.play(); }, 400)
+        setTimeout(resetCards, 1000)
       }
     } 
   }
@@ -61,8 +64,30 @@ export default function App () {
     return flippedCard.type ===clickedCard.type
   }
 
+  function Sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+        this.sound.play();
+    }
+    this.stop = function(){
+        this.sound.pause();
+    }    
+}
+
+  const matchAudio = new Sound('/sound/smb3_nspade_match.wav');
+  const noMatchAudio = new Sound('/sound/smb3_bonus_game_no_match.wav');
+  const flipAudio = new Sound('/sound/smb3_flip_card.wav');
+  const hoverAudio = new Sound('/sound/smb3_text.wav');
+
     return (
       <div className="App">
+        {/* <audio id="bgmusic" src="/sound/3-17-n-spade.mp3" autoPlay="true" loop="true"/> */}
+        <audio id="select-card" src="/sound/smb3_flip_card.wav"/>
         <GlobalStyle blackColor />
         <Wrapper
           cards={cards}
