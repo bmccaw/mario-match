@@ -18,8 +18,6 @@ const FooterDiv = Styled.div `
         width: 95vw;
         height: 100px;
         margin:auto;
-        font-family: 'Press Start 2P', cursive;
-        text-align: center;
 
         .hud {
             grid-area: hud;

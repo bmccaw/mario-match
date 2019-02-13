@@ -10,6 +10,9 @@ import {
 } from "react-router-dom";
 
 const GlobalStyle = createGlobalStyle`
+  html {
+    height: 100%;
+  }
   body {
     background-color: ${props => (props.blackColor ? 'black' : 'white')};
   }`
