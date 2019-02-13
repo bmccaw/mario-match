@@ -18,6 +18,7 @@ const FooterDiv = Styled.div `
         width: 95vw;
         height: 100px;
         margin:auto;
+        text-align: center;
 
         .hud {
             grid-area: hud;

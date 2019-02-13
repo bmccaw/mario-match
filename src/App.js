@@ -95,7 +95,7 @@ export default function App() {
   return (
     <Router>
       <div className="App">
-        {/* <audio id="bgmusic" src="/sound/3-17-n-spade.mp3" autoPlay="true" loop="true"/> */}
+        <audio id="bgmusic" src="/sound/3-17-n-spade.mp3" autoPlay="true" loop="true"/>
         <GlobalStyle blackColor />
 
         <Route exact path="/" component={Start} />
