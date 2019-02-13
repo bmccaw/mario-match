@@ -90,14 +90,13 @@ export default function App() {
   const matchAudio = new Sound('/sound/smb3_nspade_match.wav');
   const noMatchAudio = new Sound('/sound/smb3_bonus_game_no_match.wav');
   const flipAudio = new Sound('/sound/smb3_flip_card.wav');
-  // const hoverAudio = new Sound('/sound/smb3_text.wav');
+  const bgMusic = new Sound('/sound/3-17-n-spade.mp3');
 
   return (
     <Router>
       <div className="App">
-        <audio id="bgmusic" src="/sound/3-17-n-spade.mp3" autoPlay="true" loop="true"/>
+        <audio id="bgmusic" src="/sound/3-17-n-spade.mp3" type="audio/mpeg" autoPlay="true" loop="loop" preload="auto"/>
         <GlobalStyle blackColor />
-
         <Route exact path="/" component={Start} />
         <Route exact path="/game" render = {() => (<Wrapper
             cards={cards}
