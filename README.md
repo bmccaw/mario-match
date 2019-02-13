@@ -1,6 +1,6 @@
 ## Mario 3 Match Game
 
-This game is based of the the N-Spade match game found in Super Mario Bros 3 for the NES.
+This game is based off the the N-Spade match game found in Super Mario Bros 3 for the NES and uses assets found in that game. This is in no way affiliated with Nintendo, it was just a fun way for me to begin exploring React and Hooks.
 
 ## Technologies
 
